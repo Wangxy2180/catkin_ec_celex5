@@ -1,5 +1,5 @@
 # my
-
+celex5_ros_eventdata/
 
 #some test
 
@@ -133,6 +133,7 @@ devel_isolated/
 *.cfgc
 /cfg/cpp/
 /cfg/*.py
+
 
 # Ignore generated docs
 *.dox
