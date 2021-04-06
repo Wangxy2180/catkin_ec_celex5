@@ -1,5 +1,6 @@
 # my
 celex5_ros_eventdata/
+bag_data/
 
 #some test
 
@@ -7,6 +8,9 @@ celex5_ros_eventdata/
 ################# Clion ########################
 cmake-build-debug/
 .idea/
+
+##################VScode######################
+.vscode/
 
 
 ################# C++ ##########################
