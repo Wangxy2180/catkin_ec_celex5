@@ -10,12 +10,34 @@ ClusterDetector::ClusterDetector() : noise_val(grid_cols * grid_rows, 0)
 
 ClusterDetector::~ClusterDetector() {}
 
-bool ClusterDetector::detect_feature(const sensor_msgs::Image::ConstPtr &event_image) {
+bool ClusterDetector::detect_feature_image(const sensor_msgs::Image::ConstPtr &event_image)
+{
     cv::Mat event_bin;
     read_image(event_image,event_bin);
     cv::imshow("test",event_bin);
     cv::waitKey(1);
+//    todo
+//    这里需要进行分块的可视化操作，以及动态噪声采样
+//    先计算当前再哪个大块里，然后再计算这个大块转换成1维后的序号
+//    对噪声再vector中计算的方法是
+    for(int cur_col_idx = 0; cur_col_idx <sensor_cols_;++cur_col_idx)
+    {
+        for(int cur_row_idx = 0; cur_row_idx <sensor_rows_;++cur_row_idx)
+        {
+            if(event_bin.at<int>(cur_row_idx,cur_col_idx)==1)
+            {
+                int grid_index = (cur_col_idx / grid_size_cols) + grid_cols * (cur_row_idx / grid_size_rows);
+                ++noise_val[grid_index];
+            }
+        }
+    }
 }
+
+bool ClusterDetector::detect_feature_event(const celex5_msgs::EventVector::ConstPtr &event_vector)
+{
+    ROS_INFO("event_size: %d", event_vector->events.size());
+}
+
 
 void ClusterDetector::read_image(const sensor_msgs::Image::ConstPtr msg, cv::Mat &image)
 {
