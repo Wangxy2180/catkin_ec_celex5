@@ -11,8 +11,8 @@
         <node pkg="celex5_detector" type="celex5_detector" name="celex5_detector_object" output="screen">
             <!--        recv_ed topic-->
             <!--            下边的转进行events和images的修改，注意成对的注释-->
-<!--            <remap from="detector_recved_topic" to="/celex5_mipi/display/binary_img/raw_image"/>-->
-<!--            <param name="recved_data_type" value="images"/>-->
+            <!--            <remap from="detector_recved_topic" to="/celex5_mipi/display/binary_img/raw_image"/>-->
+            <!--            <param name="recved_data_type" value="images"/>-->
 
             <remap from="detector_recved_topic" to="/celex5_mipi/events"/>
             <param name="recved_data_type" value="events"/>

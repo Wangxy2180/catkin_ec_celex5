@@ -23,12 +23,12 @@ int main(int argc, char *argv[])
     string recved_data_type;
     ros::param::param<string>("~recved_data_type", recved_data_type, "images");
 
-    string recv_topic;
-    ros::param::get("~recv_topic", recv_topic);
+    string detector_recved_topic;
+    ros::param::get("~detector_recved_topic", detector_recved_topic);
 
     cout << "--------" << detector_name << endl;
     cout << "--------" << recved_data_type << endl;
-    cout << "--------" << recv_topic << endl;
+    cout << "--------" << detector_recved_topic << endl;
 
 
     CeleX5Detector *detector;
