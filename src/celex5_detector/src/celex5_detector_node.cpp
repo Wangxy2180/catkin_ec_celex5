@@ -4,6 +4,7 @@
 
 #include "celex5_detector/celex5_detector.h"
 #include "celex5_detector/cluster_detector.h"
+#include "celex5_detector/Morph_tennis_detector.h"
 #include <ros/ros.h>
 
 using namespace std;
@@ -36,6 +37,10 @@ int main(int argc, char *argv[])
     {
         detector = new ClusterDetector;
         //        cout << "yes";
+    }
+    else if(detector_name == "morph")
+    {
+        detector=new Morph_detector;
     }
     else
     {

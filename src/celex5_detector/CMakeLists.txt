@@ -56,7 +56,10 @@ include_directories(${CMAKE_SOURCE_DIR}/celex5_detector/include)
 
 # get data from camera
 add_executable(${PROJECT_NAME}
-        src/celex5_detector_node.cpp src/celex5_detector.cpp src/cluster_detector.cpp)
+        src/celex5_detector_node.cpp
+        src/celex5_detector.cpp
+        src/cluster_detector.cpp
+        src/Morph_tennis_detector.cpp)
 #src/celex5_detector_node.cpp)
 
 target_link_libraries(${PROJECT_NAME}
