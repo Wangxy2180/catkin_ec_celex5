@@ -40,25 +40,14 @@ bool ClusterDetector::detect_feature_event(const celex5_msgs::EventVector::Const
 
 //    just for test time
     const celex5_msgs::EventVector::Ptr aaa = (boost::shared_ptr<celex5_msgs::EventVector_<std::allocator<void>>> &&) event_vector;
+
     std::sort(aaa->events.begin(),aaa->events.end(),[](celex5_msgs::Event event1,celex5_msgs::Event event2){
         return event1.x>event2.x;
     });
 
-//    for(auto k:event_vector->events)
-//    {
-//
-//        int x = k.x;
-//        int y =k.y;
-//        int time = k.off_pixel_timestamp;
-//        int time_i=k.in_pixel_timestamp;
-//        int temp;
-//        for(int i = 0;i<160;++i)
-//        {
-//            temp = i+x+y;
-//            temp = temp * 3;
-//        }
-//        temp = temp/5;
-//    }
+
+
+
 }
 
 void ClusterDetector::read_image(const sensor_msgs::Image::ConstPtr msg, cv::Mat &image)
