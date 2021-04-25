@@ -2,9 +2,10 @@
 // Created by free on 2021/3/28.
 //
 
+#include "celex5_detector/Morph_tennis_detector.h"
 #include "celex5_detector/celex5_detector.h"
 #include "celex5_detector/cluster_detector.h"
-#include "celex5_detector/Morph_tennis_detector.h"
+#include "celex5_detector/line_asyn.h"
 #include <ros/ros.h>
 
 using namespace std;
@@ -17,14 +18,14 @@ int main(int argc, char *argv[])
 
     ROS_INFO("Now, we will exec celex5_detector");
 
-    string detector_name;
-    ros::param::param<string>("~detector_name", detector_name, "cluster");
+    string detector_name="line_asyn";
+    ros::param::param<string>("~detector_name", detector_name, "line_asyn");
 
     //    set the type of data received, default is images;
-    string recved_data_type;
-    ros::param::param<string>("~recved_data_type", recved_data_type, "images");
+    string recved_data_type="events";
+    ros::param::param<string>("~recved_data_type", recved_data_type, "events");
 
-    string detector_recved_topic;
+    string detector_recved_topic="/celex5_mipi/events";
     ros::param::get("~detector_recved_topic", detector_recved_topic);
 
     cout << "--------" << detector_name << endl;
@@ -36,11 +37,14 @@ int main(int argc, char *argv[])
     if (detector_name == "cluster")
     {
         detector = new ClusterDetector;
-        //        cout << "yes";
     }
-    else if(detector_name == "morph")
+    else if (detector_name == "morph")
     {
-        detector=new Morph_detector;
+        detector = new Morph_detector;
+    }
+    else if (detector_name == "line_asyn")
+    {
+        detector = new Line_asyn;
     }
     else
     {

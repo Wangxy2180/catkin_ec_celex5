@@ -10,11 +10,11 @@ using namespace std;
 CeleX5Detector::CeleX5Detector()
 {
     string recved_data_type;
-    ros::param::param<string>("~recved_data_type", recved_data_type, "images");
+    ros::param::param<string>("~recved_data_type", recved_data_type, "events");
     if (recved_data_type == "images")
         data_sub = nh.subscribe("detector_recved_topic", 0, &CeleX5Detector::detector_callback_image, this);
     else if (recved_data_type == "events")
-        data_sub = nh.subscribe("detector_recved_topic", 0, &CeleX5Detector::detector_callback_event, this);
+        data_sub = nh.subscribe("/celex5_mipi/events", 0, &CeleX5Detector::detector_callback_event, this);
     else ROS_ERROR("invalid value of data_type : %s",recved_data_type.c_str());
     std::cout << "here2:" <<recved_data_type<< std::endl;
 
@@ -24,6 +24,7 @@ CeleX5Detector::CeleX5Detector()
 
 CeleX5Detector::~CeleX5Detector() {}
 
+// maybe...use template?
 //callback function, detect and statistics
 void CeleX5Detector::detector_callback_image(const sensor_msgs::Image::ConstPtr &event_image)
 {
